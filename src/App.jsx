@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as tmImage from '@teachablemachine/image';
+import { motion } from 'framer-motion';
 import ImageUpload from './components/ImageUpload';
 import Predictions from './components/Predictions';
 import BreedInfo from './components/BreedInfo';
@@ -10,7 +11,7 @@ const App = () => {
   const [model, setModel] = useState(null);
   const [predictions, setPredictions] = useState([]);
   const [breedInfo, setBreedInfo] = useState(null);
-  const [predictedName, setPredictedName] = useState(''); // ✅ New: track predicted breed name
+  const [predictedName, setPredictedName] = useState('');
 
   useEffect(() => {
     const loadModel = async () => {
@@ -27,9 +28,9 @@ const App = () => {
       setPredictions(sorted);
 
       const topPredictionName = sorted[0]?.className;
-      setPredictedName(topPredictionName); // ✅ New: save predicted breed name
-      setBreedInfo(null); // clear old Dog API info first
-      fetchBreedInfo(topPredictionName); // fetch new info
+      setPredictedName(topPredictionName);
+      setBreedInfo(null);
+      fetchBreedInfo(topPredictionName);
     }
   };
 
@@ -48,15 +49,28 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-gray-100">
+    <div
+      className="min-h-screen flex items-center justify-center p-6 bg-cover bg-center font-sans"
+      style={{
+        backgroundImage: "url('/OPSEG70.jpg')",
+      }}
+    >
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-2xl space-y-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800">DogView</h1>
+        <motion.h1
+          className="text-4xl font-bold text-center text-softbrown"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 200, damping: 12 }}
+        >
+          DogView
+        </motion.h1>
         <ImageUpload onPredict={handlePredict} />
         <Predictions predictions={predictions} />
-        <BreedInfo breedInfo={breedInfo} predictedName={predictedName} /> {/* ✅ Pass both! */}
+        <BreedInfo breedInfo={breedInfo} predictedName={predictedName} />
       </div>
     </div>
   );
+  
 };
 
 export default App;

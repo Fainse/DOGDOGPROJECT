@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { PawPrint } from 'lucide-react';
 
 const ImageUpload = ({ onPredict }) => {
   const fileInputRef = useRef();
@@ -47,6 +48,13 @@ const ImageUpload = ({ onPredict }) => {
 
   return (
     <div className="flex flex-col items-center space-y-4 w-full">
+      {/* Dancing Dog GIF */}
+      <img
+        src="/gras.gif"
+        alt="Dancing dog"
+        className="w-24 h-24 object-contain drop-shadow animate-bounce"
+      />
+
       <div
         className={`w-full max-w-md p-6 border-2 ${
           isDragging ? 'border-blue-500' : 'border-gray-300'
@@ -63,12 +71,25 @@ const ImageUpload = ({ onPredict }) => {
           ref={fileInputRef}
           className="hidden"
         />
-        <p className="text-gray-500 text-center">Drag & Drop an image here<br />or Click to Upload</p>
+        <p className="text-gray-500 text-center">
+          Drag & Drop an image here<br />or Click to Upload
+        </p>
       </div>
+
       {preview && (
         <div className="flex flex-col items-center space-y-4">
-          <img src={preview} alt="Preview" ref={imageRef} crossOrigin="anonymous" className="max-w-xs rounded-lg shadow-md" />
-          <button onClick={handlePredictClick} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg">
+          <img
+            src={preview}
+            alt="Preview"
+            ref={imageRef}
+            crossOrigin="anonymous"
+            className="max-w-xs rounded-lg shadow-md"
+          />
+          <button
+            onClick={handlePredictClick}
+            className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded-full transition"
+          >
+            <PawPrint size={20} />
             Predict Breed
           </button>
         </div>
