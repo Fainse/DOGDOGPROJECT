@@ -3,15 +3,14 @@ import * as tmImage from '@teachablemachine/image';
 import ImageUpload from './components/ImageUpload';
 import Predictions from './components/Predictions';
 import BreedInfo from './components/BreedInfo';
-import './App.css';
 
-const MODEL_URL = 'https://teachablemachine.withgoogle.com/models/XQMKeWaj-/';
+const MODEL_URL = 'https://teachablemachine.withgoogle.com/models/XQMKeWaj-/'; 
 
 const App = () => {
   const [model, setModel] = useState(null);
-  const [imageData, setImageData] = useState(null);
   const [predictions, setPredictions] = useState([]);
   const [breedInfo, setBreedInfo] = useState(null);
+  const [predictedName, setPredictedName] = useState('');
 
   useEffect(() => {
     const loadModel = async () => {
@@ -26,7 +25,11 @@ const App = () => {
       const prediction = await model.predict(imageElement);
       const sorted = prediction.sort((a, b) => b.probability - a.probability).slice(0, 3);
       setPredictions(sorted);
-      fetchBreedInfo(sorted[0].className);
+
+      const topPredictionName = sorted[0]?.className;
+      setPredictedName(topPredictionName);
+      setBreedInfo(null);
+      fetchBreedInfo(topPredictionName);
     }
   };
 
@@ -45,11 +48,13 @@ const App = () => {
   };
 
   return (
-    <div className="app">
-      <h1>Dog Breed Predictor</h1>
-      <ImageUpload setImageData={setImageData} onPredict={handlePredict} />
-      <Predictions predictions={predictions} />
-      <BreedInfo breedInfo={breedInfo} />
+    <div className="min-h-screen flex items-center justify-center p-6 bg-gray-100">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-2xl space-y-8">
+        <h1 className="text-3xl font-bold text-center text-gray-800">Dog Breed Predictor</h1>
+        <ImageUpload onPredict={handlePredict} />
+        <Predictions predictions={predictions} />
+        <BreedInfo breedInfo={breedInfo} predictedName={predictedName} />
+      </div>
     </div>
   );
 };
