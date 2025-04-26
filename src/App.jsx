@@ -4,13 +4,13 @@ import ImageUpload from './components/ImageUpload';
 import Predictions from './components/Predictions';
 import BreedInfo from './components/BreedInfo';
 
-const MODEL_URL = 'https://teachablemachine.withgoogle.com/models/XQMKeWaj-/'; 
+const MODEL_URL = 'https://teachablemachine.withgoogle.com/models/XQMKeWaj-/';
 
 const App = () => {
   const [model, setModel] = useState(null);
   const [predictions, setPredictions] = useState([]);
   const [breedInfo, setBreedInfo] = useState(null);
-  const [predictedName, setPredictedName] = useState('');
+  const [predictedName, setPredictedName] = useState(''); // ✅ New: track predicted breed name
 
   useEffect(() => {
     const loadModel = async () => {
@@ -27,9 +27,9 @@ const App = () => {
       setPredictions(sorted);
 
       const topPredictionName = sorted[0]?.className;
-      setPredictedName(topPredictionName);
-      setBreedInfo(null);
-      fetchBreedInfo(topPredictionName);
+      setPredictedName(topPredictionName); // ✅ New: save predicted breed name
+      setBreedInfo(null); // clear old Dog API info first
+      fetchBreedInfo(topPredictionName); // fetch new info
     }
   };
 
@@ -50,10 +50,10 @@ const App = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-gray-100">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-2xl space-y-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800">Dog Breed Predictor</h1>
+        <h1 className="text-3xl font-bold text-center text-gray-800">DogView</h1>
         <ImageUpload onPredict={handlePredict} />
         <Predictions predictions={predictions} />
-        <BreedInfo breedInfo={breedInfo} predictedName={predictedName} />
+        <BreedInfo breedInfo={breedInfo} predictedName={predictedName} /> {/* ✅ Pass both! */}
       </div>
     </div>
   );

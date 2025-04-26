@@ -1,5 +1,7 @@
 import React from 'react';
-import akcBreedInfo from '../data/akcBreedInfo';
+
+// Simulated AKC breed info dictionary (replace this with the real imported one)
+import akcBreedInfo from '../data/akcBreedInfo'; // You will load your parsed JSON here
 
 const BreedInfo = ({ breedInfo, predictedName }) => {
   if (!breedInfo && !predictedName) return null;
