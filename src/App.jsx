@@ -64,13 +64,18 @@ const App = () => {
         >
           DogView
         </motion.h1>
+
+        {/* Static description */}
+        <p className="text-center text-gray-600 text-sm">
+          Predict your dog's breed and discover detailed breed information!
+        </p>
+
         <ImageUpload onPredict={handlePredict} />
         <Predictions predictions={predictions} />
         <BreedInfo breedInfo={breedInfo} predictedName={predictedName} />
       </div>
     </div>
   );
-  
 };
 
 export default App;
