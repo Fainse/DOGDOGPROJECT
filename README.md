@@ -25,7 +25,7 @@ The app uses both a **local breed information dataset** and external API calls t
 - **Shadcn UI** + **Lucide Icons** — UI Components
 - **Framer Motion** — Smooth Animations
 - **Teachable Machine** — Image Classification Model
-- **Local AKCBreedInfo CSV** — Primary breed descriptions
+- **Local AKCBreedInfo CSV** — Primary breed descriptions [AKC Breed Info](https://github.com/tmfilho/akcdata)
 - **The Dog API** — Secondary breed data fallback
 - **Hosted on** (Vercel)
 
