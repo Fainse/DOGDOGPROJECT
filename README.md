@@ -44,14 +44,15 @@ The app uses both a **local breed information dataset** and external API calls t
 ---
 
 ## Running Locally
-
-**Clone the repository:**
-npm install
-create .env file with API key
+**Create .env file with API key**
+```bash
 VITE_DOG_API_KEY=your_dog_api_key_here
+```
+
+**Dependencies**
+```bash
+npm install
 npm run dev
 
 
-```bash
-git clone https://github.com/your-username/dogview.git
-cd dogview
+
