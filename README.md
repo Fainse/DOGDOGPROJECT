@@ -2,7 +2,7 @@
 
 DogView is an interactive web application that allows users to upload an image of a dog and receive breed predictions using a machine learning model trained with [Teachable Machine](https://teachablemachine.withgoogle.com/).
 
-The app uses both a **local breed information dataset** and external API calls to provide users with breed details, ensuring fast response times and better coverage.
+The app uses both a **local breed information dataset** and external API calls to provide users with breed details.
 
 ---
 
